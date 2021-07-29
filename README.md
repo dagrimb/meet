@@ -23,10 +23,13 @@ about those events. (more to come on this...)
 2b) "GIVEN that the user is on the homepage and that a particular event is not selected/expanded, WHEN the user clicks on the show event details element THEN the event element should expand to reveal the event details."
 2c) "GIVEN that the user is on the homepage and a particular events is selected/expanded, WHEN the user clicks on the hide event details element THEN the event element should collapse to hide the event details."
 3a) "GIVEN the user has not specified the number of event sthat they want to see, WHEN the user is on the page where suggested events are listed THEN there will be 32 events listed (as this is the default)."
+3b) "GIVEN that the user has not specified the number of events that they want to see, WHEN the user selects how many events they want to view and is on the page where suggested events are listed THEN there will be however many events they selected listed on that page."
+4a) "GIVEN that the user has visited the applicaiton before and has cached data from that application on their device, WHEN  is not in a lcoation with a sufficient internet connection THEN the cached data will allow them to use the application in a way they are accustomed to."
+4b) "GIVEN that cached data is most likely to pertain to specific settings for the place that the user is currently in and the time range of events, WHENis not in a location with sufficient internet connection THEN an error message that the user has limited use of the application while offline should be displayed."
+5a) "GIVEN that a user has been given the ability to navigate to different sections of the application, WHEN they are anywhere in the application, including a page not related to their profile, THEN they can click on an element that will take them to their profile page.
+6a) "GIVEN that data for events in each city has been stored, WHEN the user navigates to a section where they can view the cumulative volume of events in their area THEN a chart with the number of events in each city will be displayed."
 
-**LAST
-
-TECHNICAL DETAILS
+**TECHNICAL DETAILS**
 
 To get this project running on your device, download the most recent commit from the main branch. Once downloaded, navigate to the project
 in your terminal and type the command "npm start" in your project terminal.
