@@ -15,15 +15,18 @@ class Event extends Component {
   }
 
   render() {
+    //const { times } = this.props;
+    //console.log(times);
+
     return (
         <div className="expandable">
           <div className="default">
-            {this.state.times.map((time) => (
+            {this.state.times.map(time => 
               <div 
                 className="times"
                 key={this.state.eventnames}
               >{time}</div>
-            ))}
+            )}
             {this.state.eventnames.map((eventname) => (
               <div 
                 className="eventnames"

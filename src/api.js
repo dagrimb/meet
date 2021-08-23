@@ -1,4 +1,8 @@
+import { mockData } from './mock-data';
 
+export const getEvents = async () => { 
+    return mockData; // if using localhost, return mockData
+  };
 
 export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
@@ -7,7 +11,7 @@ export const extractLocations = (events) => {
 };
 
 export const extractTimes = (events) => {
-  var extractTimes = events.map((event) => event.start.originalStartTime);
+  var extractTimes = events.map((event) => event.originalStartTime);
   var times = [...new Set(extractTimes)];
   return times;
 };

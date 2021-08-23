@@ -6,7 +6,7 @@ class CitySearch extends Component {
     query: '',
     suggestions: []
   }
-
+  
   handleInputChanged = (event) => {
     const value = event.target.value;
     const suggestions = this.props.locations.filter((location) => { // filter the state of "suggestions" and use the result as the state's
@@ -23,6 +23,8 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion
     });
+
+   this.props.updateEvents(suggestion);
   }
 
   render() {
@@ -45,7 +47,7 @@ class CitySearch extends Component {
           <li>
             <b>See all cities</b>
           </li>
-        </ul>
+          </ul>
       </div>
     );
   }

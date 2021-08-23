@@ -14,10 +14,10 @@ describe('<Event /> component', () => {
     attendees = extractAttendeeCount(mockData); // pass the superset of all attendees to shallow Event component
     descriptions = extractDescriptions(mockData); // pass the superset of all descriptions to shallow Event component
     links = extractLinks(mockData); // pass the superset of all links to shallow Event component
-    EventWrapper = shallow(<Event times={times} eventnames={eventnames} groups={groups} attendees={attendees} descriptions={descriptions} links={links}/>); 
+    EventWrapper = shallow(<Event times={times} eventnames={eventnames} groups={groups} attendees={attendees} descriptions={descriptions} links={links} />); 
   });
   test('render event times by default', () => {
-    expect(EventWrapper.find('.times')).toHaveLength(1);
+    expect(EventWrapper.find('.times')).toHaveLength(2);
   });
   test('render event name by default', () => {
     expect(EventWrapper.find('.eventnames')).toHaveLength(2);
