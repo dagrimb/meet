@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { shallow, mount } from 'enzyme'; // import shallow rendering API
 import App from '../App';
@@ -53,18 +52,12 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(eventsToShow); // compare whether state of events takes appropriate array
     AppWrapper.unmount();
   });
+  test('get list of all events when user selects "See all cities"', async () => {
+    const AppWrapper = mount(<App />);
+    const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
+    await suggestionItems.at(suggestionItems.length - 1).simulate('click'); // simulate click event on "See all cities" list item
+    const allEvents = await getEvents();
+    expect(AppWrapper.state('events')).toEqual(allEvents); // check to see if the events state of the App component equals the list of all events
+    AppWrapper.unmount();
+  });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

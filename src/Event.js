@@ -2,72 +2,48 @@ import React, { Component } from 'react';
 
 class Event extends Component {
   state = {
-    times: this.props.times,
-    eventnames: this.props.eventnames,
-    groups: this.props.groups,
-    attendees: this.props.attendees,
-    event: this.props.event,
-    default: true,
-    collapsed: true,
-    expanded: false,
-    descriptions: this.props.descriptions,
-    links: this.props.links
+    expanded: false
   }
 
   render() {
-    //const { times } = this.props;
-    //console.log(times);
+    const { event } = this.props;
+    console.log(event);
 
     return (
         <div className="expandable">
-          <div className="default">
-            {this.state.times.map(time => 
-              <div 
-                className="times"
-                key={this.state.eventnames}
-              >{time}</div>
-            )}
-            {this.state.eventnames.map((eventname) => (
-              <div 
-                className="eventnames"
-                key={this.state.eventnames}
-              >{eventname}</div>
-            ))}
-            {this.state.groups.map((group) => (
-              <div 
-                className="groups"
-                key={this.state.eventnames}
-              >{group}</div>
-            ))}
-            {this.state.attendees.map((attendee) => (
-              <div 
-                className="attendees"
-                key={this.state.eventnames}
-              >{attendee} people are going</div>
-            ))}
-            </div>
-            <div className="collapsed">
-                <button className="show">Show Details</button>  
-            </div>
-            <div className="expanded">
-              {this.state.descriptions.map((description) => (
-                <div 
-                  className="descriptions"
-                  key={this.state.eventnames}
-                >{description}</div>
-              ))}
-              {this.state.links.map((link) => (
-                <div 
-                  className="links"
-                  key={this.state.eventnames}
-                >{link}</div>
-              ))}
-              <button className="hide">Hide Details</button>  
-            </div>
+           <div className="default">
+            <h2 className="eventname">{event.summary}</h2>
+            <div>
+              <span className="times">{event.start.dateTime}</span> 
+              <span className="timezone"> ({event.start.timeZone})</span>
+            </div> 
+            {/*<p className="times">{event.end.dateTime}</p>*/}
+            <span className="group">@{event.creator.name}</span>
+            <span className="location"> | {event.location}</span>
+           </div> 
+        <div className="expandButton">
+            <button 
+              className="show"
+              onClick={() => this.setState( { expanded: true })}  
+              >Show Details
+            </button>
+        </div>
+         {this.state.expanded
+          ? <div className="expanded"> 
+            <div className="descriptions">{event.description}</div>           
+            <div className="links">{event.htmlLink}</div>
+            <div className="attendees">{event.currentAttendees} are currently attending</div>
+
+            <button 
+              className="hide"
+              onClick={() => this.setState( { expanded: false })}
+            >Hide Details
+            </button>
           </div>
-
-      )
-    }
+          : null}
+        </div>
+    )
   }
-
+}
+  
 export default Event;

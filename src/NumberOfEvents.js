@@ -18,6 +18,7 @@ handleInputChanged = (event) => {
   render() {
     return (
       <div className="NumberOfEvents">
+        <h4>Number of Events</h4>
         <input
           type="text"
           className="numberOfEvents"
