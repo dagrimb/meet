@@ -160,7 +160,7 @@ input[type="number"] {
   display: inline-block;
 }
 
-.expandButton {
+.expandButton, .collapseButton {
   text-align: right;
 }
 
