@@ -5,7 +5,7 @@ class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
-    showSuggestions: undefined
+    showSuggestions: undefined,
   }
   
   handleInputChanged = (event) => {
@@ -24,7 +24,7 @@ class CitySearch extends Component {
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
-      showSuggestions: false // set showSuggestions state to false when item is clicked
+      showSuggestions: false, // set showSuggestions state to false when item is clicked
     });
 
    this.props.updateEvents(suggestion);
@@ -35,8 +35,8 @@ class CitySearch extends Component {
       <div className="CitySearch">
         <input
           type="text"
-          placeholder="Search for a city"
           className="city"
+          placeholder="Search for a city"
           value={this.state.query}
           onChange={this.handleInputChanged} // pass input change function created above--this will see
           // whether text changes have been made on input
