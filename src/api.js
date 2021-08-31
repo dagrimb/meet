@@ -1,16 +1,18 @@
-import { mockData } from './mock-data';
 import axios from 'axios';
+import { mockData } from './mock-data';
 import NProgress  from 'nprogress';
 
-export const extractLocations = (events) => {
-  var extractLocations = events.map((event) => event.location);
-  var locations = [...new Set(extractLocations)];
-  return locations;
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pathname) { // check whether there's a path
+    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState("", "", newurl); //  build the URL without a path using window.history.pushState()
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
 };
 
-
-
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth/v1/tokeninfo?access_token=${accessToken}`
   )
@@ -20,7 +22,11 @@ const checkToken = async (accessToken) => {
     return result;
 };
 
-
+export const extractLocations = (events) => {
+  var extractLocations = events.map((event) => event.location);
+  var locations = [...new Set(extractLocations)];
+  return locations;
+};
 
 export const getEvents = async () => { 
   NProgress.start();
@@ -34,7 +40,7 @@ export const getEvents = async () => {
 
     if (token) {
       removeQuery();
-      const url = 'https://jzmo612yz6.execute-api.us-west-2.amazonaws.com/dev/api/get-events' + '/' + token;
+      const url = `https://jzmo612yz6.execute-api.us-west-2.amazonaws.com/dev/api/get-events/${token}`
       const result = await axios.get(url); // if access token is found make GET request to the Google Calendar API
       if (result.data) {
         var locations = extractLocations(result.data.events);
@@ -46,12 +52,10 @@ export const getEvents = async () => {
     }
   };
 
-
 export const getAccessToken = async () => { 
   const accessToken = localStorage.getItem('access_token'); // check user storage to see if they have access token
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
-  
   if (!accessToken || tokenCheck.error) { // check whether access token is found 
     await localStorage.removeItem("access_token");
     const searchParams = new URLSearchParams(window.location.search);
@@ -62,30 +66,16 @@ export const getAccessToken = async () => {
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
-      }
+    }
     return code && getToken(code);
   }
   return accessToken;
 };
 
-const removeQuery = () => {
-  if (window.history.pushState && window.location.pathname) { // check whether there's a path
-    var newurl = // if so, build the URL with the current path
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl); //  build the URL without a path using window.history.pushState()
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
-
-   const getToken = async (code) => {
+  export const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code); // take your code and encode it using encodeURIComponent
     const { access_token } = await fetch(
-      'https://jzmo612yz6.execute-api.us-west-2.amazonaws.com/dev/api/token' + '/' + encodeCode
+      `https://jzmo612yz6.execute-api.us-west-2.amazonaws.com/dev/api/token/${encodeCode}`
     )
       .then((res) => {
         return res.json();
@@ -97,7 +87,6 @@ const removeQuery = () => {
     return access_token; // use the encoded code to get your token
   };
 
- 
 
 
 

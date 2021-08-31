@@ -27,7 +27,7 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) }) // update the state only if the component is mounted
+        this.setState({ events, locations: extractLocations(events) }); // update the state only if the component is mounted
       }      
     });
   }
