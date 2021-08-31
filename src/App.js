@@ -12,22 +12,14 @@ class App extends Component {
    locations: []
   }
 
-  updateEvents = (location) => {
-    getEvents().then((events) => {
-      const locationEvents = (location === 'all') ? // check if the value of location is "all"
-        events :
-        events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
-      });
-    });
-  }
-
   componentDidMount() { // call API and save data to state
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) }); // update the state only if the component is mounted
+        this.setState({ 
+          events, 
+          locations: extractLocations(events) 
+        }); // update the state only if the component is mounted
       }      
     });
   }
@@ -35,7 +27,18 @@ class App extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
-  
+
+  updateEvents = (location) => {
+    getEvents().then((events) => {
+      const locationEvents = (location === 'all') ? // check if the value of location is "all"
+        events 
+        :
+        events.filter((event) => event.location === location);
+      this.setState({
+        events: locationEvents
+      });
+    });
+  }
 
   render() {
     return (
