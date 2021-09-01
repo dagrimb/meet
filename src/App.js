@@ -28,14 +28,14 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ? // check if the value of location is "all"
-        events 
-        :
+        events :
         events.filter((event) => event.location === location);
+      const filteredByCount = locationEvents.slice(0, eventCount)
       this.setState({
-        events: locationEvents
+        events: filteredByCount
       });
     });
   }

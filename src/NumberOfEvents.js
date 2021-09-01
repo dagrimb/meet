@@ -4,14 +4,14 @@ import React, { Component } from 'react';
 class NumberOfEvents extends Component {
 
   state = {
-    query: 32,
+    numberOfEvents: 32,
   }
 
   
 handleInputChanged = (event) => {
     const value = event.target.value;
     this.setState({ 
-      query: value,
+      numberOfEvents: value,
     });
   };
 
@@ -22,7 +22,7 @@ handleInputChanged = (event) => {
         <input
           type="text"
           className="numberOfEvents"
-          value={this.state.query}
+          value={this.state.numberOfEvents}
           onChange={/*(events) =>*/ this.handleInputChanged} // pass input change function created above--this will see
           // whether text changes have been made on input
         />

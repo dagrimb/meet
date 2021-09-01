@@ -37,7 +37,7 @@ describe('<EventList /> component', () => {
     expect(EventWrapper.find('.show').text()).toBe('Show Details');
   });
   test('expand to show more details when show details button is clicked', () => {
-    let expand = EventWrapper.setState({expanded: true });
+    let expand = EventWrapper.setState({expanded: false });
     EventWrapper.find('button.show').simulate('click', expand);
     expect(EventWrapper.state('expanded')).toBe(true);
     //expect(EventWrapper.state('collapsed')).toBe(false);
