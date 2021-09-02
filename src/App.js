@@ -9,7 +9,8 @@ import './nprogress.css';
 class App extends Component {
   state = {
    events: [],
-   locations: []
+   locations: [],
+   numberOfEvents: 32
   }
 
   componentDidMount() { // call API and save data to state
@@ -17,7 +18,7 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
-          events, 
+          events: events.slice(0, this.state.numberOfEvents), 
           locations: extractLocations(events) 
         }); // update the state only if the component is mounted
       }      
@@ -25,7 +26,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.mounted = false;
+    //this.mounted = false;
   }
 
   updateEvents = (location, eventCount) => {
@@ -40,11 +41,18 @@ class App extends Component {
     });
   }
 
+  handleEventCount = (eventCount) => {
+    this.setState({ 
+      numberOfEvents: eventCount
+    });
+    this.updateEvents(eventCount)
+  };
+
   render() {
     return (
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents}  />
-        <NumberOfEvents />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} handleEventCount={this.handleEventCount} />
         <EventList events={this.state.events} />
       </div>
     );

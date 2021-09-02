@@ -6,13 +6,10 @@ describe('<NumberOfEvents /> component', () => {
   let /*sample, */ NumberOfEventsWrapper;
   beforeAll(() => {
     /*sample = extractSample(mockData); // pass the superset of all samples to shallow NumberOfEvents component*/
-    NumberOfEventsWrapper = shallow(<NumberOfEvents /*sample={sample}*/ />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents handleEventCount={() => {}} />);
   });
   test('render number input', () => {
     expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1);
-  });
-  test('ensure that 32 is the default state of query', () => {
-    expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(32);
   });
   test('ensure that value prop of numberOfEvents is query', () => {
     const query = NumberOfEventsWrapper.state('numberOfEvents');
@@ -20,10 +17,10 @@ describe('<NumberOfEvents /> component', () => {
   })
   test('change state of number of events when text input changes to 16', () => {
     NumberOfEventsWrapper.setState({
-      query: 16
+      numberOfEvents: 16
     });
     const eventObject = { target: { value: 16 }};
     NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', eventObject);
-    expect(NumberOfEventsWrapper.state('query')).toBe(16);
+    expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(16);
   });
 })

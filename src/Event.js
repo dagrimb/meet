@@ -23,7 +23,6 @@ class Event extends Component {
               : null}
               <span className="location">{event.location}</span>
           </div> 
-          
           {this.state.expanded === false
           ? <div className="expandButton">
               <button 
@@ -33,7 +32,6 @@ class Event extends Component {
               </button>
             </div>
           : null}
-         
           {this.state.expanded
             ? <div className="expanded"> 
                 <div className="descriptions">{event.description}</div>           

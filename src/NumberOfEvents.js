@@ -4,15 +4,15 @@ import React, { Component } from 'react';
 class NumberOfEvents extends Component {
 
   state = {
-    numberOfEvents: 32,
+    //numberOfEvents: 16,
   }
 
   
-handleInputChanged = (event) => {
-    const value = event.target.value;
+  handleEventCount = (eventCount) => {
     this.setState({ 
-      numberOfEvents: value,
+      numberOfEvents: eventCount
     });
+    this.props.handleEventCount(eventCount)
   };
 
   render() {
@@ -20,10 +20,11 @@ handleInputChanged = (event) => {
       <div className="NumberOfEvents">
         <h4>Number of Events</h4>
         <input
-          type="text"
+          type="number"
+          placeholder="Enter how many results you wish to see"
           className="numberOfEvents"
-          value={this.state.numberOfEvents}
-          onChange={/*(events) =>*/ this.handleInputChanged} // pass input change function created above--this will see
+          value={this.props.numberOfEvents}
+          onChange={(event) => this.handleEventCount(event.target.value)} // pass input change function created above--this will see
           // whether text changes have been made on input
         />
       </div>

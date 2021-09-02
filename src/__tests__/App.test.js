@@ -21,6 +21,9 @@ describe('<App /> component', () => {
   test('render Number of Events', () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1); // make sure NumberofEvents component exists
   })
+  test('ensure that 32 is the default state of numberOfEvents', () => {
+    expect(AppWrapper.state('numberOfEvents')).toBe(32);
+  });
 });
 describe('<App /> integration', () => {
   test('App passes "events" state as a prop to EventList', () => {
@@ -89,13 +92,23 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(filteredEvents); // compare whether state of events takes appropriate array
     AppWrapper.unmount();
   });
-  test('get list of 32 events when Number of Events box is empty', async () => {
+  test('get list of 32 events when Number of Events box is emptied', async () => {
     const AppWrapper = mount(<App />);
-    //const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
-    const eventQuantity = AppWrapper.find(NumberOfEvents).find('.numberOfEvents');
-    await eventQuantity.at(eventQuantity.length - 1).simulate('change'); // simulate click event on "See all cities" list item
+    const CitySearchWrapper = AppWrapper.find(CitySearch);
+    const locations = extractLocations(mockData);
+    CitySearchWrapper.setState({ suggestions: locations }); // set CitySearch's suggestions state to all cities
+    const suggestions = CitySearchWrapper.state('suggestions');
+    const selectedIndex = Math.floor(Math.random() * (suggestions.length)); // set selectedIndex to the index of the selected suggestions from 
+    // suggestions array
+    const selectedCity = suggestions[selectedIndex]; // store suggestion
+    await CitySearchWrapper.instance().handleItemClicked(selectedCity); // simulate click
     const allEvents = await getEvents();
-    expect(AppWrapper.state('events')).toEqual(allEvents); // check to see if the events state of the App component equals the list of all events
+    const eventsToShow = allEvents.filter(event => event.location === selectedCity); // filter list of all events against selected location
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    NumberOfEventsWrapper.setState({ numberOfEvents: 16 });
+    const eventQuantity = { target: { value: ''}};
+    NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', eventQuantity); // simulate click event on "See all cities" list item
+    expect(AppWrapper.state('events')).toEqual(eventsToShow); // check to see if the events state of the App component equals the list of all events
     AppWrapper.unmount();
   });
   /*test('get number of events matching the amount of results entered by the user', async () => {

@@ -27,6 +27,7 @@ describe('<CitySearch /> component', () => {
     // the query state
   });
   test('change state when text input changes', () => {
+    //const CitySearchWrapper = shallow(<CitySearch />);
     CitySearchWrapper.setState({
       query: 'Munich' // set query state 
     });
