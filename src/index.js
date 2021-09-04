@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+//import Container from 'react-bootstrap/Container';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+
   </React.StrictMode>,
   document.getElementById('root')
 );

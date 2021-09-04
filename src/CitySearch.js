@@ -33,6 +33,11 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <div className="heading">
+          <h1>Meet App</h1>
+          <p>Choose your nearest city</p>
+        </div>
+        <div className="search">
         <input
           type="text"
           className="city"
@@ -42,18 +47,24 @@ class CitySearch extends Component {
           // whether text changes have been made on input
           onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
+        
         <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}> {/* if showSuggestions is true, the list
         will be visible; if not, the list will not be visible */}
           {this.state.suggestions.map((suggestion) => (
             <li 
+              className="suggestedCities"
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}
             >{suggestion}</li>
           ))}
-          <li onClick={() => this.handleItemClicked("all")}>
+          <li 
+            className="selectAll"
+            onClick={() => this.handleItemClicked("all")}>
             <b>See all cities</b>
           </li>
           </ul>
+          
+          </div>
       </div>
     );
   }

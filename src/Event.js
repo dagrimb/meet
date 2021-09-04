@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+
 
 class Event extends Component {
   state = {
@@ -10,6 +12,7 @@ class Event extends Component {
     console.log(event);
 
     return (
+
         <div className="expandable">
           <div className="default">
             <h2 className="eventname">{event.summary}</h2>
@@ -25,24 +28,26 @@ class Event extends Component {
           </div> 
           {this.state.expanded === false
           ? <div className="expandButton">
-              <button 
+              <Button
+                variant="success" 
                 className="show"
                 onClick={() => this.setState( { expanded: true })}  
               >Show Details
-              </button>
+              </Button>
             </div>
           : null}
           {this.state.expanded
             ? <div className="expanded"> 
                 <div className="descriptions">{event.description}</div>           
-                <div className="links">{event.htmlLink}</div>
+                <div className="links"><a href={event.htmlLink}>See details on Google Calendar</a></div>
                 <div className="attendees">{event.currentAttendees} are currently attending</div>
                 <div className="collapseButton">
-                  <button 
+                  <Button 
+                    variant="success"
                     className="hide"
                     onClick={() => this.setState( { expanded: false })}
                     >Hide Details
-                  </button>
+                  </Button>
                 </div>   
               </div>
           : null}

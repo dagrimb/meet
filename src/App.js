@@ -5,6 +5,8 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations  } from './api';
 import './nprogress.css';
+import Row from 'react-bootstrap/Row';
+
 
 class App extends Component {
   state = {
@@ -57,7 +59,7 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
-        <EventList events={events} />
+          <EventList events={events} />
       </div>
     );
   }

@@ -1,10 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
-  padding: 2% 5%;
+  padding: 2% 2%;
+  background-color: #1B5539;
+  color: #FFE957;
 }
 
 .App * {
   box-sizing: border-box;
+}
+
+.heading {
+  text-align: center; 
 }
 
 ul {
@@ -12,8 +18,21 @@ ul {
   list-style: none;
 }
 
+h1, h6 {
+  font-weight: bold;
+}
+
 p {
   margin: 5px 0;
+  font-weight: bold;
+}
+
+span   {
+ font-size: 1.25rem; 
+}
+
+.descriptions, .links, .attendees {
+  font-size: 1.1rem;
 }
 
 .display-none {
@@ -28,33 +47,51 @@ input[type="number"] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  border: 3px solid #ffffff;
+  font-size: 16px;
+  color: #1B5539;
+  font-weight: bold;
   line-height: 20px;
   align-self: center;
   height: 38px;
 }
 
-.city {
-  width: 250px;
+
+
+.city, ul .suggestions {
+  width: 500px;
+}
+
+.city, .numberOfEvents {
+  background-color: #FFE957;
+  color: #1B5539;
+}
+
+.suggestions li {
+  color: #1B5539;
 }
 
 .CitySearch {
   display: flex;
   flex-direction: column;
   flex-basis: 300px;
-  max-width: 300px;
+  max-width: 50%;
   margin: auto;
   position: relative;
+  text-align: center;
+  align-items: center;
+  height: 12rem;
 }
 
+
 .suggestions {
-  width: 250px;
+  width: 500px;
   position: absolute;
+  border: 3px solid #ffffff;
+
   z-index: 2;
   align-self: center;
   margin: 0;
-  top: 43px;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
@@ -62,7 +99,8 @@ input[type="number"] {
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: #FFE957;
+  color: #1B5539;
   cursor: default;
 }
 
@@ -73,6 +111,16 @@ input[type="number"] {
 
 .suggestions > li:hover {
   background-color: #bcdcdb;
+}
+
+.eventContainer {
+  max-width: 100%;
+}
+
+.eventCol li {
+  background-color: #FFE957;
+  color: #1B5539;
+  font-weight: bold;
 }
 
 .event {
@@ -92,6 +140,23 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+}
+
+.default, .descriptions, .links, .attendees {
+  margin-bottom: 1rem;
+}
+
+.default h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-decoration: underline;
+}
+
+a {
+  font-weight: bold;
+  color: #1B5539;
+  text-decoration: underline;
 }
 
 .name {
@@ -150,7 +215,7 @@ input[type="number"] {
   padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 5px solid #ffffff;
   font-size: 14px;
   line-height: 20px;
   align-self: center;
@@ -227,5 +292,14 @@ input[type="number"] {
     max-width: 50%;
     min-width: auto;
     margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .city, .suggestions {
+    max-width: 18rem;
+  }
+  .NumberOfEvents {
+    margin-top: 5rem;
   }
 }
