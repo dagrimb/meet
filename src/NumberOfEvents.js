@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class NumberOfEvents extends Component {
 
   state = {
-    numberOfEvents: 16
   }
 
   
@@ -18,10 +17,10 @@ class NumberOfEvents extends Component {
   render() {
     return (
       <div className="NumberOfEvents">
-        <h6>Number of Events</h6>
+        <h6>Choose the number of events per page that you wish to see</h6>
         <input
           type="number"
-          placeholder="Enter how many results you wish to see"
+          placeholder="Enter desired amount"
           className="numberOfEvents"
           value={this.props.numberOfEvents}
           onChange={(event) => this.handleEventCount(event.target.value)} // pass input change function created above--this will see

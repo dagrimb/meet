@@ -5,7 +5,6 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations  } from './api';
 import './nprogress.css';
-import Row from 'react-bootstrap/Row';
 
 
 class App extends Component {
@@ -21,14 +20,14 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
-          events: events.slice(0, this.state.numberOfEvents), 
+          events: events.slice(0, this.state.numberOfEvents),
           locations: extractLocations(events) 
         }); // update the state only if the component is mounted
       }      
     });
   }
 
-  componentWillUnmount() {
+ componentWillUnmount() {
     this.mounted = false;
   }
 
@@ -59,7 +58,13 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
-          <EventList events={events} />
+        {
+          events.length > 0 && numberOfEvents > 0 ?
+             <EventList events={events} />
+          :
+            <div className="minimumWarning">To use this application, please enter a number of events greater 
+            than zero.</div>
+        }
       </div>
     );
   }

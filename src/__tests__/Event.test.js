@@ -17,6 +17,10 @@ describe('<EventList /> component', () => {
     //links = extractLinks(mockData); // pass the superset of all links to shallow Event component
     EventWrapper = shallow(<Event event={mockData[0]} />); 
   });
+
+
+
+
   test('render event list', () => {
     const EventListWrapper = shallow(<EventList events={mockData} />);
     expect (EventListWrapper.find(Event)).toHaveLength(mockData.length);
@@ -37,27 +41,68 @@ describe('<EventList /> component', () => {
     expect(EventWrapper.find('.show').text()).toBe('Show Details');
   });
   test('expand to show more details when show details button is clicked', () => {
+    EventWrapper.setState({
+      event: mockData    
+    });
+    const EventEventsState = EventWrapper.state('event');
+    expect(EventWrapper.state('event')).toEqual(mockData);
+    expect(EventEventsState).not.toEqual(undefined);
     let expand = EventWrapper.setState({expanded: false });
-    EventWrapper.find('button.show').simulate('click', expand);
+    EventWrapper.find('.show').simulate('click', expand);
     expect(EventWrapper.state('expanded')).toBe(true);
     //expect(EventWrapper.state('collapsed')).toBe(false);
   });
   test('render event descriptions when expanded is true', () => {
+    EventWrapper.setState({
+      event: mockData,
+      expanded: true
+    });
+    const EventEventsState = EventWrapper.state('event');
+    expect(EventWrapper.state('event')).toEqual(mockData);
+    expect(EventEventsState).not.toEqual(undefined);
     expect(EventWrapper.find('.descriptions')).toHaveLength(1);
-  })
+  });
   test('render event link when expanded is true', () => {
+    EventWrapper.setState({
+      event: mockData,
+      expanded: true
+    });
+    const EventEventsState = EventWrapper.state('event');
+    expect(EventWrapper.state('event')).toEqual(mockData);
+    expect(EventEventsState).not.toEqual(undefined);
     expect(EventWrapper.find('.links')).toHaveLength(1);
   });
   test('render number of attendees by default', () => {
+    EventWrapper.setState({
+      event: mockData,
+      expanded: true
+    });
+    const EventEventsState = EventWrapper.state('event');
+    expect(EventWrapper.state('event')).toEqual(mockData);
+    expect(EventEventsState).not.toEqual(undefined);
     expect(EventWrapper.find('.attendees')).toHaveLength(1);
   });
   test('render hide details button', () => {
+    EventWrapper.setState({
+      event: mockData,
+      expanded: true
+    });
+    const EventEventsState = EventWrapper.state('event');
+    expect(EventWrapper.state('event')).toEqual(mockData);
+    expect(EventEventsState).not.toEqual(undefined);
     expect(EventWrapper.find('.hide').text()).toBe('Hide Details');
   });
   test('collapse to show less details when hide details button is clicked', () => {
     //let collapse = EventWrapper.setState({expanded: false});
     //EventWrapper.find('.show').simulate('click', collapse);
-    EventWrapper.find('button.hide').simulate('click')
+    EventWrapper.setState({
+      event: mockData,
+      expanded: true
+    });
+    const EventEventsState = EventWrapper.state('event');
+    expect(EventWrapper.state('event')).toEqual(mockData);
+    expect(EventEventsState).not.toEqual(undefined);
+    EventWrapper.find('.hide').simulate('click')
     expect(EventWrapper.state('expanded')).toBe(false);
    // expect(EventWrapper.state('collapsed')).toBe(true);
    expect(EventWrapper.find('.expanded')).toHaveLength(0);

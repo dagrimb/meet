@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme'; // import shallow rendering API
 import App from '../App';
 import EventList from '../EventList';
+import Event from '../Event';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
@@ -26,9 +27,15 @@ describe('<App /> component', () => {
   });
 });
 describe('<App /> integration', () => {
-  test('App passes "events" state as a prop to EventList', () => {
+
+  test('App passes "events" state as a prop to EventList if state of numberOfEvents = 1 && state of events is set to at least one event object', () => {
     const AppWrapper = mount(<App />); // use full rendering API to render component's children for integration testing
+    AppWrapper.setState({ 
+      numberOfEvents: 1,
+      events: mockData
+    });    //const EventListWrapper = shallow(<EventList events={mockData} />);
     const AppEventsState = AppWrapper.state('events');
+    expect(AppWrapper.state('events')).toEqual(mockData); // check to see if the events state of the App component equals the list of all events
     expect(AppEventsState).not.toEqual(undefined); // check whether state of "events" isn't undefined
     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState); // compare the state of App's events with EventList events prop
     AppWrapper.unmount(); // clean up DOM after test 
@@ -128,3 +135,8 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });*/
 });
+
+
+
+
+

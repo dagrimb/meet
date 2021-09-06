@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
 .App {
   padding: 2% 2%;
   background-color: #1B5539;
@@ -18,9 +19,11 @@ ul {
   list-style: none;
 }
 
-h1, h6 {
+h1 {
   font-weight: bold;
+  margin-bottom: 1.5rem;
 }
+
 
 p {
   margin: 5px 0;
@@ -56,7 +59,9 @@ input[type="number"] {
   height: 38px;
 }
 
-
+.NumberOfEvents {
+  margin-top: 1.5rem;
+}
 
 .city, ul .suggestions {
   width: 500px;
@@ -75,7 +80,7 @@ input[type="number"] {
   display: flex;
   flex-direction: column;
   flex-basis: 300px;
-  max-width: 50%;
+  max-width: 65%;
   margin: auto;
   position: relative;
   text-align: center;
@@ -178,11 +183,20 @@ a {
   overflow-x: hidden;
 }
 
+.NumberOfEvents {
+  max-width: 15rem;
+}
+
 .numberOfEvents {
-  width: 200px;
+  width: 12rem;
   margin-top: 0px;
   margin-bottom: 75px;
   text-align: center;
+}
+
+.EventList {
+  height: 100%;
+  margin-bottom: 0;
 }
 
 .button-wrapper {
@@ -281,7 +295,10 @@ a {
   font-family: "Roboto";
 }
 
-
+.minimumWarning {
+  text-align: center;
+  height: 20rem;
+}
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
@@ -292,14 +309,28 @@ a {
     max-width: 50%;
     min-width: auto;
     margin: 0 auto;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* Space between "Meet App" and "Choose your nearest city" */
+}
+
+@media only screen and (max-width: 768px) {
+ /* Center the NumberOfEvents component*/
+  .NumberOfEvents {
+    text-align: center;
+    max-width: 100%;
   }
 }
 
 @media only screen and (max-width: 576px) {
+
+  /* Space between "CitySearch" and "NumberOfEvents" components */
+  
   .city, .suggestions {
     max-width: 18rem;
   }
-  .NumberOfEvents {
-    margin-top: 5rem;
-  }
+
 }

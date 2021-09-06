@@ -13,7 +13,7 @@ class EventList extends Component {
         <Container className="eventContainer">
           <Row>
             {this.props.events.map(event =>
-              <Col variant="h-50" className="eventCol justify-md-content-center" xs={12} sm={12} md={6} lg={6} xl={4} xxl={4}>
+              <Col className="eventCol justify-md-content-center" xs={12} sm={12} md={6} lg={6} xl={4} xxl={4}>
                 <li key={event.id}>
                   <Event event={event} />
                 </li>
