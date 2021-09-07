@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 
 class EventList extends Component {
+  
   render() {
     //const { events } = this.props;
     return (

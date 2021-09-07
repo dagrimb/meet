@@ -27,7 +27,7 @@ class CitySearch extends Component {
       showSuggestions: false, // set showSuggestions state to false when item is clicked
     });
 
-   this.props.updateEvents(suggestion);
+   this.props.updateEvents(suggestion); // call updateEvents and pass the target value through it to set the desired location
   }
 
   render() {

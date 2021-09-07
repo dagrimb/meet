@@ -20,7 +20,7 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
-          events: events.slice(0, this.state.numberOfEvents),
+          events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
           locations: extractLocations(events) 
         }); // update the state only if the component is mounted
       }      
@@ -35,25 +35,27 @@ class App extends Component {
     getEvents().then((events) => {
       let locationEvents = (location === 'all') ? // check if the value of location is "all"
         events :
-        events.filter((event) => event.location === location);
-      locationEvents = locationEvents.slice(0, eventCount)
+        events.filter((event) => event.location === location); // if location != to all cities, assign setLocations to filtered event location
+      locationEvents = locationEvents.slice(0, eventCount) // set lcoationEvents var to include a range from zero to eventCount (which reps
+      // numberOfEvents)
       this.setState({
-        events: locationEvents,
-        setLocation: location
+        events: locationEvents, // all the events filtered by event location and limited by eventCount are the new events array
+        setLocation: location // the set location is === the location determined by whether all (32) or another count are its state
       });
     });
   }
 
   handleEventCount = (eventCount) => {
     this.setState({ 
-      numberOfEvents: eventCount
+      numberOfEvents: eventCount // numberOfEvents set to eventCount
     });
     const { setLocation } = this.state
-    this.updateEvents(setLocation, eventCount);
+    this.updateEvents(setLocation, eventCount); // events updated based on location and count
   };
 
   render() {
-    const { numberOfEvents, locations, events } = this.state;
+    const { numberOfEvents, locations, events } = this.state; // create const variables for reuse
+    // render EventsList component if length of events array is > zero and numberOfEvent count is > zero
     return (
       <div className="App">
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
