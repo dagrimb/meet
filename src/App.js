@@ -56,13 +56,20 @@ class App extends Component {
   render() {
     const { numberOfEvents, locations, events } = this.state; // create const variables for reuse
     // render EventsList component if length of events array is > zero and numberOfEvent count is > zero
+    //console.log(events);
+    // render EventsList component if length of events array is > zero and numberOfEvent count is > zero
+    //if (events.length <= 0 && numberOfEvents <= 0) {
+      //return <div className="minimumWarning">To use this application, please enter a number of events greater 
+      // than zero.</div>
+    //}
+
     return (
       <div className="App">
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
         {
           events.length > 0 && numberOfEvents > 0 ?
-             <EventList events={events} />
+             <EventList events={events} updateEvents={this.updateEvents} />
           :
             <div className="minimumWarning">To use this application, please enter a number of events greater 
             than zero.</div>

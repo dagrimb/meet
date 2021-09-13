@@ -9,10 +9,10 @@ class Event extends Component {
 
   render() {
     const { event } = this.props;
-    console.log(event);
+
 
     return (
-
+      <div className="event">
         <div className="expandable">
           <div className="default">
             <h2 className="eventname">{event.summary}</h2>
@@ -36,8 +36,9 @@ class Event extends Component {
               </Button>
             </div>
           : null}
-          {this.state.expanded
-            ? <div className="expanded"> 
+          {!this.state.expanded
+            ? null
+            : <div className="expanded"> 
                 <div className="descriptions">{event.description}</div>           
                 <div className="links"><a href={event.htmlLink}>See details on Google Calendar</a></div>
                 <div className="attendees">{event.currentAttendees} are currently attending</div>
@@ -50,8 +51,9 @@ class Event extends Component {
                   </Button>
                 </div>   
               </div>
-          : null}
+           }
         </div>
+      </div>
       )
     }
   }
