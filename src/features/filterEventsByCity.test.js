@@ -19,22 +19,27 @@ defineFeature(feature, test => { // for defining the code for the feature
     then('the user should be able to see all of the events relevent to them', () => {
       AppWrapper.update();
       //expect(AppWrapper.find('.event').hostNodes()).toHaveLength(mockData.length);
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.find('.event')).toHaveLength(32);
     });
   });
   test('User should see a list of suggestions when they search for a city', ({ given, when, then  }) => {
     let locations, CitySearchWrapper;
     locations = extractLocations(mockData); // create locations data
+    
     given('that the application is launched and the homepage is open', () => {    
       CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}} locations={locations} />)
     });
+
     when('the user types the name of their desired city in the appropriate field', () => { 
       CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } }); // simulate the change event on the city element,
       // giving it a value of "Berlin"
+    
     });
+    
     then('they should see the page for the city that they typed the name of and the events taking place in that city.', () => { 
       expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(2);
     });
+  
   }); 
   test('User can select a city from the suggested list', ({ given, and, when, then }) => {
     let AppWrapper;
