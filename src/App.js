@@ -71,8 +71,7 @@ class App extends Component {
           events.length > 0 && numberOfEvents > 0 ?
              <EventList events={events} updateEvents={this.updateEvents} />
           :
-            <div className="minimumWarning">To use this application, please enter a number of events greater 
-            than zero.</div>
+            <div className="minimumWarning"></div>
         }
       </div>
     );

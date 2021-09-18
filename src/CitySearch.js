@@ -7,7 +7,7 @@ class CitySearch extends Component {
     query: '',
     suggestions: [],
     showSuggestions: undefined,
-    infoText: '...',
+    infoText: '',
   }
   
   handleInputChanged = (event) => {
@@ -60,7 +60,6 @@ class CitySearch extends Component {
           // whether text changes have been made on input
           onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
-        
         <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}> {/* if showSuggestions is true, the list
         will be visible; if not, the list will not be visible */}
           {this.state.suggestions.map((suggestion) => (
@@ -69,6 +68,7 @@ class CitySearch extends Component {
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}
             >{suggestion}</li>
+            
           ))}
           <li 
             className="selectAll"
@@ -76,7 +76,6 @@ class CitySearch extends Component {
             <b>See all cities</b>
           </li>
           </ul>
-          
           </div>
       </div>
     );
