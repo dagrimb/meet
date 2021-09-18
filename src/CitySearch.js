@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
 
@@ -6,20 +7,31 @@ class CitySearch extends Component {
     query: '',
     suggestions: [],
     showSuggestions: undefined,
+    infoText: '...',
   }
   
   handleInputChanged = (event) => {
     const value = event.target.value;
+    this.setState({showSuggestions:true});
     const suggestions = this.props.locations.filter((location) => { // filter the state of "suggestions" and use the result as the state's
       // value
-      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
+      return location.toUpperCase().indexOf(value.toUpperCase()) > -1; // return list of suggestions
     });
     console.log("CHANGE", this.props.locations, suggestions)
+    if (suggestions.length === 0) {
     this.setState({ 
       query: value,
-      suggestions,
+      infoText: "We cannot find the city you are looking for. Please try another city", // if list contains no suggestions, set infoText to
+      // message to be displayed in info alert
     });
-  };
+  } else {
+    return this.setState({
+      query: value,
+      suggestions,
+      infoText:'' // if list contains suggestions, set infoText to empty string
+    });
+  }
+};
 
   handleItemClicked = (suggestion) => {
     this.setState({
@@ -33,6 +45,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <InfoAlert text={this.state.infoText} />
         <div className="heading">
           <h1>Meet App</h1>
           <p>Choose your nearest city</p>
