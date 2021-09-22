@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations  } from './api';
+import { WarningAlert } from './Alert';
 import './nprogress.css';
 
 
@@ -12,7 +13,8 @@ class App extends Component {
    setLocation: "all",
    events: [],
    locations: [],
-   numberOfEvents: 32
+   numberOfEvents: 32,
+   infoText: '',
   }
 
   componentDidMount() { // call API and save data to state
@@ -23,10 +25,29 @@ class App extends Component {
           events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
           locations: extractLocations(events) 
         }); // update the state only if the component is mounted
-      }      
-    });
-  }
+      let date2 = this.state.events;
+      let date1 = new Date();
+      date1 = date1.toISOString();
+      console.log("DATE 2", date2);
+      let twoDaysOut = Math.abs(new Date(date1).getTime() + 172800000);
+      let difference = Math.abs(twoDaysOut - new Date(date2));
+      if (date2 > date1 && difference <= 172800000) {
+        this.setState({
+          infoText: "You have events taking place in the 48 hours. Time is of the essence.",
+        });
+      } else {
+        return this.setState({
+          infoText:''
+        });     
+      }
+    }
+    })
+  };
+      
+      
+      
 
+  
  componentWillUnmount() {
     this.mounted = false;
   }
@@ -53,6 +74,8 @@ class App extends Component {
     this.updateEvents(setLocation, eventCount); // events updated based on location and count
   };
 
+
+  
   render() {
     const { numberOfEvents, locations, events } = this.state; // create const variables for reuse
     // render EventsList component if length of events array is > zero and numberOfEvent count is > zero
@@ -63,16 +86,34 @@ class App extends Component {
       // than zero.</div>
     //}
 
+   // console.log(events);
+
+ /*  let date2 = events.start.dateTime;
+   let date1 = new Date();
+   date1 = date1.toISOString();
+   console.log("DATE 2", date2);
+//   console.log("START TIME", events.start.dateTime);
+   let twoDaysOut = Math.abs(new Date(date1).getTime() + 172800000);
+   let difference = Math.abs(twoDaysOut - new Date(date2));
+   if (date2 > date1 && difference <= 172800000) {
+   console.log("You have events taking place in the 48 hours. Time is of the essence.");
+  } else {
+   console.log("All events have either passed or are more than 48 hours from now.")    
+  }*/
+  //console.log("START TIME", events.start.dateTime);
+
     return (
       <div className="App">
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
-        {
-          events.length > 0 && numberOfEvents > 0 ?
+        <WarningAlert text={this.state.infoText} />
+
+        {/*{
+          events.length > 0 && numberOfEvents > 0 ?*/}
              <EventList events={events} updateEvents={this.updateEvents} />
-          :
+          {/*}:
             <div className="minimumWarning"></div>
-        }
+        }*/}
       </div>
     );
   }

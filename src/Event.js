@@ -4,12 +4,29 @@ import Button from 'react-bootstrap/Button';
 
 class Event extends Component {
   state = {
-    expanded: false
+    expanded: false,
+//    infoText: '',
   }
+
+ /*calcTimeDifference = (timeOne, timeTwo) => {
+   let difference = (timeTwo.getTime() - timeOne()) / 1000;
+   difference /= 60;
+   return Math.abs(Math.round(difference)); 
+   return;
+ }
+*/
+ // Add 172800000 milleseconds (i.e. 48 hours) to current time and set to twoDaysOut. If event date is 1) greater than current date, 
+ // and 2) less than oneDayOut, trigger warning
+
+/* componentDidMount() {
+   this.warnTimeSensitive();
+ }*/
 
   render() {
     const { event } = this.props;
+    console.log("START TIME", event.start.dateTime);
 
+    
 
     return (
       <div className="event">

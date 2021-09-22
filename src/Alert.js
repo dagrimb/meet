@@ -3,12 +3,20 @@ import React, { Component } from 'react';
 class Alert extends Component {
   constructor(props) {
     super(props);
+    this.backgroundColor = null;
     this.color = null;
-  }
+    this.fontStyle = null;
+    this.fontSize = null;
+    this.fontWeight = null;
+  };
 
   getStyle = () => {
     return {
-      color: this.color, // set color of component to null by default
+      backgroundColor: this.backgroundColor,
+      color: this.color,  
+      fontStyle: this.fontStyle,
+      fontSize: this.fontStyle,
+      fontWeight: this.fontWeight
     };
   }
 
@@ -23,7 +31,11 @@ class Alert extends Component {
   class InfoAlert extends Alert {
     constructor(props) {
       super(props);
-      this.color = 'pink';
+      this.backgroundColor = 'yellow';
+      this.color = 'blue';
+      this.fontStyle = 'Garamond';
+      this.fontSize = '18px';
+      this.fontWeight = 'bold';
     }
   }
 
@@ -31,7 +43,20 @@ class Alert extends Component {
     constructor(props) {
       super(props);
       this.color = 'red';
+      this.fontStyle = 'Garamond';
+      this.fontSize = '22px';
+      this.fontWeight = 'bold';
     }
   }
 
-  export { InfoAlert, ErrorAlert };
+  class WarningAlert extends Alert {
+    constructor(props) {
+      super(props);
+      this.color = 'orange';
+      this.fontStyle = 'Garamond';
+      this.fontSize = '22px';
+      this.fontWeight = 'bold';
+    }
+  }
+
+  export { InfoAlert, ErrorAlert, WarningAlert };
