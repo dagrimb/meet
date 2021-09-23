@@ -24,7 +24,7 @@ class Event extends Component {
 
   render() {
     const { event } = this.props;
-    console.log("START TIME", event.start.dateTime);
+//    console.log("START TIME", event.start.dateTime);
 
     
 

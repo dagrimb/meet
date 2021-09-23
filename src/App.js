@@ -20,31 +20,67 @@ class App extends Component {
   componentDidMount() { // call API and save data to state
     this.mounted = true;
     getEvents().then((events) => {
-      if (this.mounted) {
+    const event = events.reduce((obj, cur) => ({...obj, [cur.sid]: cur}))
+    //const event = Object.assign({}, events)
+    console.log("EVENT", event);
+    const date2 = event.start.dateTime;
+    console.log(date2, "You have events taking place in the next 48 hours. Time is of the essence.");
+
+    let date1 = new Date();
+    date1 = date1.toISOString();
+    //console.log("DATE 2", date2);
+
+    let twoDaysOut = Math.abs(new Date(date1).getTime() + 172800000);
+
+    let difference = Math.abs(twoDaysOut - new Date(date2));
+
+      if ((this.mounted) && (date2 > date1 && difference <= 172800000)) {
         this.setState({ 
           events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
-          locations: extractLocations(events) 
+          locations: extractLocations(events),
+          infoText: "You have events taking place in the next 48 hours. Time is of the essence.",
         }); // update the state only if the component is mounted
-      let date2 = this.state.events;
-      let date1 = new Date();
-      date1 = date1.toISOString();
-      console.log("DATE 2", date2);
-      let twoDaysOut = Math.abs(new Date(date1).getTime() + 172800000);
-      let difference = Math.abs(twoDaysOut - new Date(date2));
-      if (date2 > date1 && difference <= 172800000) {
-        this.setState({
-          infoText: "You have events taking place in the 48 hours. Time is of the essence.",
-        });
       } else {
         return this.setState({
+          events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
+          locations: extractLocations(events),
           infoText:''
         });     
       }
-    }
     })
-  };
+  }
       
-      
+    /* componentDidMount() { // call API and save data to state
+    this.mounted = true;
+    getEvents().then((events) => {
+      /*let indices;
+      for (let i = 0; i < events.length; i++) {
+        indices = events[i];
+        console.log("INDICES", indices); 
+        let date2 = indices.start.dateTime;
+        console.log(date2, "You have events taking place in the next 48 hours. Time is of the essence.");
+      let date1 = new Date();
+      date1 = date1.toISOString();
+      //console.log("DATE 2", date2); 
+      let twoDaysOut = Math.abs(new Date(date1).getTime() + 172800000);
+      let difference = Math.abs(twoDaysOut - new Date(date2));
+      if
+  ((this.mounted) && (date2 > date1 && difference <= 172800000)) {
+        this.setState({ 
+          events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
+          locations: extractLocations(events),
+          infoText: "You have events taking place in the next 48 hours. Time is of the essence.",
+        }); // update the state only if the component is mounted
+      } else if (this.mounted) {
+          return this.setState({
+            events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
+            locations: extractLocations(events),
+            infoText:''
+          });     
+        }
+      }
+    })
+  }  */ 
       
 
   
@@ -79,7 +115,7 @@ class App extends Component {
   render() {
     const { numberOfEvents, locations, events } = this.state; // create const variables for reuse
     // render EventsList component if length of events array is > zero and numberOfEvent count is > zero
-    //console.log(events);
+    //console.log(events.start);
     // render EventsList component if length of events array is > zero and numberOfEvent count is > zero
     //if (events.length <= 0 && numberOfEvents <= 0) {
       //return <div className="minimumWarning">To use this application, please enter a number of events greater 
