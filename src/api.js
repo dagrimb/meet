@@ -44,14 +44,18 @@ export const getToken = async (code) => {
 };
 
 
-
-
 export const getEvents = async () => { 
   NProgress.start();
 
   if (window.location.href.startsWith('http://localhost')) {
     NProgress.done(); 
     return mockData; // if using localhost, return mockData
+  }
+
+  if (!navigator.onLine) { // check whether user is offline
+    const events = localStorage.getItem("lastEvents"); // load stored event
+    NProgress.done();
+    return events?JSON.parse(events).events:[];;
   }
 
     const token = await getAccessToken();
@@ -62,7 +66,7 @@ export const getEvents = async () => {
       const result = await axios.get(url); // if access token is found make GET request to the Google Calendar API
       if (result.data) {
         var locations = extractLocations(result.data.events);
-        localStorage.setItem("lastEvents", JSON.stringify(result.data));
+        localStorage.setItem("lastEvents", JSON.stringify(result.data)); // store list of events for future use
         localStorage.setItem("locations", JSON.stringify(locations));
       }
       NProgress.done();
