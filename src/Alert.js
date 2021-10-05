@@ -59,4 +59,14 @@ class Alert extends Component {
     }
   }
 
-  export { InfoAlert, ErrorAlert, WarningAlert };
+  class CacheWarning extends Alert {
+    constructor(props) {
+      super(props);
+      this.color = 'purple';
+      this.fontStyle = 'Garamond';
+      this.fontSize = '22px';
+      this.fontWeight = 'bold';
+    }
+  }
+
+  export { InfoAlert, ErrorAlert, WarningAlert, CacheWarning };
