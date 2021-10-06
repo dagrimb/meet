@@ -81,10 +81,15 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
+        <div>
+          <WarningAlert text={this.state.infoText} />
+        </div>
+        <div>
+          <CacheWarning text={this.state.cacheWarning} />
+        </div>
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
-        <WarningAlert text={this.state.infoText} />
-        <CacheWarning text={this.state.cacheWarning} />
+
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         {/*{
           events.length > 0 && numberOfEvents > 0 ?*/}

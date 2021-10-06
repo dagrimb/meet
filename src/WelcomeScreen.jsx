@@ -32,6 +32,7 @@ function WelcomeScreen(props) {
             <a
               href="https://dagrimb.github.io/meet/privacy.html"
               rel="nofollow noopener"
+              class="privacy"
             >
               Privacy policy
             </a>
