@@ -1,6 +1,6 @@
 {
-  "short_name": "Meet",
-  "name": "Meet",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,9 +21,8 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "https://dagrimb.github.io/meet/",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "scope": "https://dagrimb.github.io/meet/"
+  "background_color": "#ffffff"
 }
