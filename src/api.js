@@ -2,10 +2,14 @@ import axios from 'axios';
 import { mockData } from './mock-data';
 import NProgress  from 'nprogress';
 
-export const extractLocations = (events) => {
-  var extractLocations = events.map((event) => event.location);
-  var locations = [...new Set(extractLocations)];
-  return locations;
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pathname) { // check whether there's a path
+    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.pushState("", "", newurl); //  build the URL without a path using window.history.pushState()
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
 };
 
 export const checkToken = async (accessToken) => {
@@ -18,31 +22,11 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
-const removeQuery = () => {
-  if (window.history.pushState && window.location.pathname) { // check whether there's a path
-    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    window.history.pushState("", "", newurl); //  build the URL without a path using window.history.pushState()
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
+export const extractLocations = (events) => {
+  var extractLocations = events.map((event) => event.location);
+  var locations = [...new Set(extractLocations)];
+  return locations;
 };
-
-export const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code); // take your code and encode it using encodeURIComponent
-  const { access_token } = await fetch(
-    `https://jzmo612yz6.execute-api.us-west-2.amazonaws.com/dev/api/token/${encodeCode}`
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .catch((error) => error);
-
-  access_token && localStorage.setItem("access_token", access_token);
-
-  return access_token; // use the encoded code to get your token
-};
-
 
 export const getEvents = async () => { 
   NProgress.start();
@@ -94,7 +78,20 @@ export const getAccessToken = async () => {
   return accessToken;
 };
 
-  
+export const getToken = async (code) => {
+  const encodeCode = encodeURIComponent(code); // take your code and encode it using encodeURIComponent
+  const { access_token } = await fetch(
+    `https://jzmo612yz6.execute-api.us-west-2.amazonaws.com/dev/api/token/${encodeCode}`
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => error);
+
+  access_token && localStorage.setItem("access_token", access_token);
+
+  return access_token; // use the encoded code to get your token
+};  
 
 
 
