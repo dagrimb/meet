@@ -33,7 +33,7 @@ class App extends Component {
           (event) => (Date.now() - new Date(event.start.dateTime).getTime()) <= 1000 * 60 * 60 * 24 * 2
         );
         console.log("This is the upcoming events", upcomingEvents);
-  
+        if (this.mounted) {
         this.setState({
           events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
           locations: extractLocations(events),
@@ -43,7 +43,8 @@ class App extends Component {
           cacheWarning: navigator.onLine
             ? ''
             : `The list of events below has been loaded from the cache and may not be up-to-date`,
-        });
+          });
+        }
       })
     }
   }
