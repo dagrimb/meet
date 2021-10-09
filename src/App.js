@@ -4,7 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
-import { getEvents, extractLocations, checkToken, getAccessToken  } from './api';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { WarningAlert, CacheWarning } from './Alert';
 import './nprogress.css';
 
@@ -34,15 +34,15 @@ class App extends Component {
         );
         console.log("This is the upcoming events", upcomingEvents);
         if (this.mounted) {
-        this.setState({
-          events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
-          locations: extractLocations(events),
-          infoText: upcomingEvents.length > 0
-            ? `You have ${upcomingEvents.length} event${upcomingEvents.length > 1 ? 's' : ''} taking place in the next 48 hours. Time is of the essence.`
-            : '',
-          cacheWarning: navigator.onLine
-            ? ''
-            : `The list of events below has been loaded from the cache and may not be up-to-date`,
+          this.setState({
+            events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
+            locations: extractLocations(events),
+            infoText: upcomingEvents.length > 0
+              ? `You have ${upcomingEvents.length} event${upcomingEvents.length > 1 ? 's' : ''} taking place in the next 48 hours. Time is of the essence.`
+              : '',
+            cacheWarning: navigator.onLine
+              ? ''
+              : `The list of events below has been loaded from the cache and may not be up-to-date`,
           });
         }
       })
