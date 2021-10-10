@@ -87,7 +87,10 @@ class App extends Component {
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
         <EventList events={events} updateEvents={this.updateEvents} />
-        <WarningAlert text={this.state.infoText} />
+        <WarningAlert style={{ marginBottom: '5rem' }}
+        
+        
+        text={this.state.infoText} />
         <CacheWarning text={this.state.cacheWarning} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         {/*{
