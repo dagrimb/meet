@@ -33,17 +33,21 @@ class App extends Component {
           (event) => (Date.now() - new Date(event.start.dateTime).getTime()) <= 1000 * 60 * 60 * 24 * 2
         );
         console.log("This is the upcoming events", upcomingEvents);
-
+        if (this.mounted) {
           this.setState({
             events: events.slice(0, this.state.numberOfEvents), // set events array to include event range 0 to total numberOfEvents
             locations: extractLocations(events),
             infoText: upcomingEvents.length > 0
               ? `You have ${upcomingEvents.length} event${upcomingEvents.length > 1 ? 's' : ''} taking place in the next 48 hours. Time is of the essence.`
               : '',
+            cacheWarning: navigator.onLine
+              ? ''
+              : `The list of events below has been loaded from the cache and may not be up-to-date`
           });
-        })
-      }
+        }
+      })
     }
+  }
  
 
   componentWillUnmount() {
@@ -81,8 +85,8 @@ class App extends Component {
     return (
       <div className="App">
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
-        <EventList events={events} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
+        <EventList events={events} updateEvents={this.updateEvents} />
         <WarningAlert text={this.state.infoText} />
         <CacheWarning text={this.state.cacheWarning} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
