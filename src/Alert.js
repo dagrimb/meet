@@ -59,7 +59,7 @@ class Alert extends Component {
     }
   }
 
-  /*class CacheWarning extends Alert {
+  class CacheWarning extends Alert {
     constructor(props) {
       super(props);
       this.color = 'purple';
@@ -67,6 +67,6 @@ class Alert extends Component {
       this.fontSize = '22px';
       this.fontWeight = 'bold';
     }
-  }*/
+  }
 
-  export { InfoAlert, ErrorAlert, WarningAlert /*, CacheWarning */ };
+  export { InfoAlert, ErrorAlert, WarningAlert, CacheWarning };
