@@ -86,7 +86,8 @@ input[type="number"] {
   position: relative;
   text-align: center;
   align-items: center;
-  height: 12rem;
+  height: 16rem;
+  padding-top: 4rem;
 }
 
 
@@ -209,8 +210,15 @@ a {
 }
 
 .Alert {
-  position: fixed;
-  top: 20px;
+  position: absolute;
+}
+
+#warningAlert {
+  top: 0rem;
+}
+
+#cacheWarning {
+  top: 40rem;
 }
 
 .data-vis-wrapper {
