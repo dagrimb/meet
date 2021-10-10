@@ -16,6 +16,7 @@ class App extends Component {
    locations: [],
    numberOfEvents: 32,
    infoText: '',
+   cacheWarning: '',
    showWelcomeScreen: undefined
   }
 
