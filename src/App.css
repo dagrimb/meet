@@ -72,6 +72,7 @@ input[type="number"] {
 .city, .numberOfEvents {
   background-color: #FFE957;
   color: #1B5539;
+  margin-left: 1rem;
 }
 
 .suggestions li {
@@ -212,6 +213,7 @@ a {
 
 .Alert {
   position: absolute;
+  margin-left: 1rem;
 }
 
 #warningAlert {
