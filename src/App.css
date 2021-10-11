@@ -62,6 +62,7 @@ input[type="number"] {
 
 .NumberOfEvents {
   margin-top: 1.5rem;
+  margin-left: 1rem;
 }
 
 .city, ul .suggestions {
@@ -215,6 +216,7 @@ a {
 
 #warningAlert {
   top: 0rem;
+  margin-left: 1rem;
 }
 
 #cacheWarning {

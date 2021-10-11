@@ -90,11 +90,6 @@ class App extends Component {
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
         <EventList events={events} updateEvents={this.updateEvents} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
-        {/*{
-          events.length > 0 && numberOfEvents > 0 ?*/}
-          {/*}:
-            <div className="minimumWarning"></div>
-        }*/}
       </div>
     );
   }
