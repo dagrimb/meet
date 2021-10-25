@@ -10,7 +10,7 @@ const EventGenre = ({ events }) => {
 
   const getData = () => {
     const data = genres.map((genre) => { // map the genres array
-      const value = filter(({ summary }) =>
+      const value = events.filter(({ summary }) =>
         summary.split(" ").includes(genre)
       ).length;
 
