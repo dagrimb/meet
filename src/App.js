@@ -100,7 +100,7 @@ class App extends Component {
         <CacheWarning id="cacheWarning" text={this.state.cacheWarning} />
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
         <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
-        <div className="data-vis-wrapper">
+        <div className="data-vis-wrapper" style={{ padding: '0rem 5rem'}}>
           <EventGenre events={events} />
           <ResponsiveContainer height={400} >
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
