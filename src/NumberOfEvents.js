@@ -10,15 +10,14 @@ class NumberOfEvents extends Component {
 
   
   handleEventCount = (eventCount) => { // duplicate function from app.js to set numberOfEvents to the eventCount and enable count to change count
-    const eventNumber = this.props.numberOfEvents;
-    if (eventNumber.length === 0) {
+    if (eventCount < 1) {
       this.setState({
         infoText: "To use this application, please enter a number of events greater than zero",
       });
     } else {
     this.setState({ 
       numberOfEvents: eventCount,
-      infoText:''
+      infoText: ''
     });
   }
     this.props.handleEventCount(eventCount) // enable count to change with input into Number of Events box

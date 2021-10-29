@@ -31,7 +31,7 @@ class App extends Component {
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
+    if (true) /*((code || isTokenValid) && this.mounted)*/ {
       getEvents().then((events) => {
         const upcomingEvents = events.filter(
           (event) => (Date.now() - new Date(event.start.dateTime).getTime()) <= 1000 * 60 * 60 * 24 * 2
@@ -119,7 +119,7 @@ class App extends Component {
           </ResponsiveContainer>
         </div>
         <EventList events={events} updateEvents={this.updateEvents} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+        {/*<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />*/}
       </div>
     );
   }
