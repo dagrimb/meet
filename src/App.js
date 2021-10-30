@@ -21,7 +21,8 @@ class App extends Component {
    numberOfEvents: 32,
    infoText: '',
    cacheWarning: '',
-   showWelcomeScreen: undefined
+   showWelcomeScreen: undefined,
+   errorMessage: ''
   }
 
   async componentDidMount() { // call API and save data to state
@@ -99,28 +100,34 @@ class App extends Component {
         <WarningAlert id="warningAlert" style={{ marginBottom: '5rem' }} text={this.state.infoText} />
         <CacheWarning id="cacheWarning" text={this.state.cacheWarning} />
         <CitySearch locations={locations} updateEvents={this.updateEvents}  />
-        <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />
-        <div className="data-vis-wrapper" style={{ padding: '0rem 5rem'}}>
-          <EventGenre events={events} />
-          <ResponsiveContainer height={400} >
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-              <CartesianGrid />
-              <XAxis type="category" dataKey="city" name="city" />
-              <YAxis 
-                allowDecimals={false}
-                type="number" 
-                dataKey="number" 
-                name="number of events"  
-              />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={this.getData()} fill="#AFB9F4" />
-              <Scatter data={this.getData()} fill="#D9A9EF" />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
-        <EventList events={events} updateEvents={this.updateEvents} />
+        <NumberOfEvents numberOfEvents={numberOfEvents} handleEventCount={(event) => this.handleEventCount(event)} />  
+        {  
+          events.length > 0 && numberOfEvents > 0 ?  
+            <>
+              <div className="data-vis-wrapper" style={{ padding: '0rem 5rem' }}>
+                <EventGenre events={events} />
+                <ResponsiveContainer height={400}>
+                <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                  <CartesianGrid />
+                  <XAxis type="category" dataKey="city" name="city" />
+                  <YAxis
+                    allowDecimals={false}
+                    type="number"
+                    dataKey="number"
+                    name="number of events" />
+                  <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                  <Scatter data={this.getData()} fill="#AFB9F4" />
+                  <Scatter data={this.getData()} fill="#D9A9EF" />
+                </ScatterChart>
+              </ResponsiveContainer>
+              </div><EventList events={events} updateEvents={this.updateEvents} />
+            </>
+            :
+            <div className="minimumWarning"></div>
+          }
         {/*<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />*/}
       </div>
+      
     );
   }
 }
