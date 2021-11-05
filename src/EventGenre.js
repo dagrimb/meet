@@ -10,15 +10,17 @@ const EventGenre = ({ events }) => {
   const piecolors = ['#FFA805', '#34E000', '#00CFE6', '#EBA3FF', '#FFA3B4'];
 
   const getData = () => {
-    let data = genres.map((genre) => { // map the genres array
-      const value = events.filter(({ summary }) =>
-        summary.split(" ").includes(genre)
-      ).length;
-      return { name: genre, value: value };
-    });
-    data = data.filter((data) => data.value > 0);
-    return data;  
-  };
+    return genres
+      .map((genre) => { // map the genres array
+        return {
+          name: genre,
+          value: events.filter(({ summary }) =>
+          summary.split(" ").includes(genre)
+        ).length
+        };
+      })
+        .filter((data) => data.value > 0);  
+    };
 
   useEffect(() => { 
     setData(() => getData()); 
