@@ -58,7 +58,10 @@ class Event extends Component {
             : <div className="expanded"> 
                 <div className="descriptions">{event.description}</div>           
                 <div className="links"><a href={event.htmlLink}>See details on Google Calendar</a></div>
-                <div className="attendees">{event.currentAttendees} are currently attending</div>
+                {!event.currentAttendees
+                  ? null
+                  : <div className="attendees">{event.currentAttendees} are currently attending</div>
+                }
                 <div className="collapseButton">
                   <Button 
                     variant="success"

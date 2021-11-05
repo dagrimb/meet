@@ -10,7 +10,6 @@ const EventGenre = ({ events }) => {
   const piecolors = ['#FFA805', '#34E000', '#00CFE6', '#EBA3FF', '#FFA3B4'];
 
   const getData = () => {
-    
     let data = genres.map((genre) => { // map the genres array
       const value = events.filter(({ summary }) =>
         summary.split(" ").includes(genre)

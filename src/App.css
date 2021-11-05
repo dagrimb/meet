@@ -39,6 +39,10 @@ span   {
   font-size: 1.1rem;
 }
 
+.links {
+  color: #1B5539;
+}
+
 .display-none {
   display: none;
 }
