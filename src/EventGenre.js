@@ -10,13 +10,14 @@ const EventGenre = ({ events }) => {
   const piecolors = ['#FFA805', '#34E000', '#00CFE6', '#EBA3FF', '#FFA3B4'];
 
   const getData = () => {
-    const data = genres.map((genre) => { // map the genres array
+    
+    let data = genres.map((genre) => { // map the genres array
       const value = events.filter(({ summary }) =>
         summary.split(" ").includes(genre)
       ).length;
-
       return { name: genre, value: value };
     });
+    data = data.filter((data) => data.value > 0);
     return data;  
   };
 
