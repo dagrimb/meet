@@ -21,9 +21,6 @@ const EventGenre = ({ events }) => {
     })
       .filter((data) => data.value > 0);
   }
-
-
-  
     /*
        return genres
       .reduce(
@@ -49,11 +46,12 @@ const EventGenre = ({ events }) => {
       <PieChart width={400} height={400}>
         <Pie
           data={data}
-          cx={200}
+          cx={300}
           cy={200}
           labelLine={false}
-          outerRadius={80}
+          outerRadius={100}
           dataKey="value"
+          className="pie"
           label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
             {
               data.map((entry, index) => (

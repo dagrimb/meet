@@ -79,8 +79,16 @@ input[type="number"] {
   margin-left: 1rem;
 }
 
+.suggestions {
+  margin-left: 20rem;
+}
+
 .suggestions li {
   color: #1B5539;
+}
+
+.recharts-wrapper {
+  margin: 0 auto;
 }
 
 .CitySearch {
@@ -94,6 +102,7 @@ input[type="number"] {
   align-items: center;
   height: 16rem;
   padding-top: 4rem;
+  margin-bottom: 5rem;
 }
 
 
@@ -101,10 +110,10 @@ input[type="number"] {
   width: 500px;
   position: absolute;
   border: 3px solid #ffffff;
-
   z-index: 2;
   align-self: center;
-  margin: 0;
+  margin-left: 1rem;
+  margin-bottom: 10rem;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
