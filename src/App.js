@@ -82,14 +82,23 @@ class App extends Component {
 
   getData = () => {
     const {locations, events} = this.state;
+    return locations
+      .reduce(
+        (xs, location) => {
+          const number = events.filter((event) => event.location === location).length;
+          return (number > 0) ? [...xs, { city: location.split(', ').shift(), number}] : xs;
+        }, []
+      )};
+
+    /*const {locations, events} = this.state;
     let data = locations.map((location) => {
       const number = events.filter((event) => event.location === location).length
       const city = location.split(', ').shift() // split location into city name and get first element in array
       return {city, number};
     })
     data = data.filter((data) => data.number > 0);
-    return data;
-  }
+    return data;*/
+  
 
  /* getData = () => {
     const {locations, events} = this.state;

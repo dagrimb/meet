@@ -11,16 +11,34 @@ const EventGenre = ({ events }) => {
 
   const getData = () => {
     return genres
-      .map((genre) => { // map the genres array
-        return {
-          name: genre,
-          value: events.filter(({ summary }) =>
-          summary.split(" ").includes(genre)
-        ).length
-        };
-      })
-        .filter((data) => data.value > 0);  
-    };
+    .map((genre) => { // map the genres array
+      return {
+        name: genre,
+        value: events.filter(({ summary }) =>
+        summary.split(" ").includes(genre)
+      ).length
+      };
+    })
+      .filter((data) => data.value > 0);
+  }
+
+
+  
+    /*
+       return genres
+      .reduce(
+        (xs, genre) => {
+          const value = events.filter(({ summary }) =>
+            summary.split(" ").includes(genres)
+          ).length;
+          return (value > 0) ? [...xs, { name: genre, value}] : xs;
+          },
+        []
+        )};
+    */
+      
+
+
 
   useEffect(() => { 
     setData(() => getData()); 
