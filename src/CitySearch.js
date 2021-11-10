@@ -59,7 +59,7 @@ class CitySearch extends Component {
           onChange={this.handleInputChanged} // pass input change function created above--this will see
           // whether text changes have been made on input
           onFocus={() => { this.setState({ showSuggestions: true }) }}
-          onBlur={() => { this.setState({ showSuggestions: false })}}
+          /*onBlur={() => { this.setState({ showSuggestions: false })}}*/
         />
         <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}> {/* if showSuggestions is true, the list
         will be visible; if not, the list will not be visible */}
