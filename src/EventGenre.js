@@ -6,8 +6,8 @@ import {
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
 
-  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
-  const piecolors = ['#FFA805', '#34E000', '#00CFE6', '#EBA3FF', '#FFA3B4'];
+  const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS', 'Angular'];
+  const piecolors = ['#FFA805', '#34E000', '#00CFE6', '#EBA3FF', '#FFA3B4', '#FFF000'];
 
   const getData = () => {
     return genres

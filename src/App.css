@@ -326,6 +326,14 @@ a {
   height: 20rem;
 }
 
+
+@media only screen and (min-width: 1400px) {
+
+  .App {
+    align-items: center;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
@@ -358,5 +366,7 @@ a {
   .city, .suggestions {
     max-width: 18rem;
   }
+
+
 
 }
