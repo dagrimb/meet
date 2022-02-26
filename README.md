@@ -1,9 +1,8 @@
 # meet
 
-**ABOUT**
+Meet App is a serverless, Progressive Web Application (PWA) built with React using Behavior- and Test-Driven Development, AWS Lambda serverless functions, OAuth2 authentication flow, and the Google Calendar API. It provides users with a lists of events in different cities, as well as useful details about those events. Users are able to filter events by location (along with Recharts data visualization showing number of events in relevant cities), determine the number of events that they with to see on their page, and add a shortcut to their phone for mobile, offline use.
 
-Meet is an application that provides users with both general and personalized lists of events in different cities, as well as useful details
-about those events. (more to come on this...)
+<img src="https://user-images.githubusercontent.com/74441727/155817129-8027580c-71d2-444b-8ff3-8a196b883d93.png" width=1000>
 
 **USER STORIES & SCENARIOS**
 
@@ -29,17 +28,114 @@ about those events. (more to come on this...)
 5a) "GIVEN that a user has been given the ability to navigate to different sections of the application, WHEN they are anywhere in the application, including a page not related to their profile, THEN they can click on an element that will take them to their profile page.
 6a) "GIVEN that data for events in each city has been stored, WHEN the user navigates to a section where they can view the cumulative volume of events in their area THEN a chart with the number of events in each city will be displayed."
 
-**TECHNICAL DETAILS**
+TECHNOLOGIES USED
+* React.js: a popular component-based, declarative, user-friendly, easy-to-maintain JavaScript UI library used to work with well with data via server-side endpoints with MVC (Model-View-Controller) architecture by housing its data and "State" and "Props" (please start with https://reactjs.org/ for more information on this library). The structure for this applicated was generated with the Create-React-App command.
+* Google Calendar API: for retrieving upcoming event data. The user will search for a city and the API will return results based on the data it is connected it.
+* AWS Lambda: the hosting provider who provides a serverless function as an authorization server.
+* OAuth2 authentication (also known as "Open Authorization"): the industry-standard framework for authorization flow that designed to allow users to obtain limited access credentials from the Google API Console. 
+* Jest: a JavaScript an assertion and testing library that is used to verify code correctness in relation to desired functionality. 
+* Cucumber: the world's leading tool for Behavior-Driven Development (BDD), a type of development that contains scenario's pertaining to the user's interaction with the application (see the scenarios section above)
+* Puppeteer: a Node library that provides a high-level API to carry out automated testing, allowing developers to request any kind of interaction from the a Chrome (or Chromium) browser that they want or need.
+* Lighthouse: for testing the application in an incognito browser with the localStorage emptied of its session credentials to simulate offline or slow-network use.
+* Atatus: a powerful application observability and performance management tool use to track application and detect/report their performance errors
+* Recharts: for creating and displaying a scatterplot of event data with reusable React components
+* Axios: an HTTP client that can perform AJAX operations with HTTP requests to the API endpoints, connecting the external with the app's client-side.
 
-To get this project running on your device, download the most recent commit from the main branch. Once downloaded, navigate to the project
-in your terminal and type the command "npm start" in your project terminal.
+SETTING UP THE DEVELOPMENT ENVIRONMENT: What you will need
+* A computer with a web browser (ideally Google Chrome so, as someone how may like to look under the hood of the application, one can take advantage of the React Developer tools Google has made available).
+* Wifi or a LAN connection
+* A terminal (MacOS) or Command Line Interface (CLI, for PC users).
+* Code Editor (if you are to engage and experiment with the code on your own)
+  * Recommended: Visual Studio Code (one of the best to use with React)
 
-Project dependencies: none listed at this time
+DEPENDENCIES/LIBRARIES NEEDED (Note: This is not an exhaustive list of dependencies. Please refer to the **package.lock.json"** for a detailed list of dependencies in order to re-build the app)
+* React
+* Recharts
+* Axios
 
-API that is used: Google Calendar API (for retrieving events)
+WHAT YOUR **package.json** SHOULD LOOK LIKE
 
-Other technical details:
-  -primary technologies: React.js
-  -serverless...to the degree that a traditional one is not custom-made and included by the properieters of this project. Instead, the    authorization server is a serverless function and the hosting provider is AWS Lambda.
-  -progressive- it allows users the ability to work offline
-  -authentication: employs OAuth2 authentication
+{
+  "name": "meet",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://dagrimb.github.io/meet",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "atatus-spa": "^4.3.2",
+    "axios": "^0.21.1",
+    "immer": "^9.0.6",
+    "nprogress": "^0.2.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^3.4.4",
+    "recharts": "^2.1.5",
+    "web-vitals": "^0.2.4",
+    "workbox-background-sync": "^5.1.3",
+    "workbox-broadcast-update": "^5.1.3",
+    "workbox-cacheable-response": "^5.1.3",
+    "workbox-core": "^5.1.3",
+    "workbox-expiration": "^5.1.3",
+    "workbox-google-analytics": "^5.1.3",
+    "workbox-navigation-preload": "^5.1.3",
+    "workbox-precaching": "^5.1.3",
+    "workbox-range-requests": "^5.1.3",
+    "workbox-routing": "^5.1.3",
+    "workbox-strategies": "^5.1.3",
+    "workbox-streams": "^5.1.3",
+    "yarn": "^1.22.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+    "enzyme": "^3.11.0",
+    "gh-pages": "^3.2.3",
+    "puppeteer": "^10.2.0"
+  }
+}
+
+DOWNLOADS/INSTALATIONS
+* As previously mentioned above, the existence and initial structure of this application was created use the Create-React-App command. Most of the dependencies for this project have been installed with that command.
+* Node Package Manager: **npm install**
+* Recharts: **npm i --save recharts**
+
+TO RUN THE PROJECT
+* Download the most recent commit from the main branch. Once downloaded, navigate to the main project (i.e. **meet**) folder in your terminal or CLI
+* Type the command **npm start** or **npm run start**
+
+Built By: David Grimberg
+
+
+
+
+
+
+
