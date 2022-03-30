@@ -237,8 +237,8 @@ class App extends Component {
             :
             <div className="minimumWarning"></div>
           }
-        {<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />}
-      </div>
+        {/*<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />*/}
+        </div>
       
     );
   }
